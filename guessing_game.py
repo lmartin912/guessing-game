@@ -1,21 +1,31 @@
 import random
 
-def guessing_game():
-    number_to_guess = random.randint(1, 100)
+def play_game():
+    number = random.randint(1, 100)
     attempts = 0
 
-    print("Welcome to the Number Guessing Game!")
-    
-    while True:
-        guess = int(input("Guess a number between 1 and 100: "))
-        attempts += 1
+    print("\nWelcome to the Number Guessing Game!")
+    print("Guess a number between 1 and 100:")
 
-        if guess < number_to_guess:
+    while True:
+        guess = int(input("> "))
+        attempts += 1
+        
+        if guess < number:
             print("Too low! Try again.")
-        elif guess > number_to_guess:
+        elif guess > number:
             print("Too high! Try again.")
         else:
-            print(f"🎉 Correct! You guessed the number in {attempts} tries!")
+            print(f"🎉 Correct! You guessed the number in {attempts} attempts!")
             break
+    
+    return attempts
 
-guessing_game()
+# Main game loop (play again feature)
+while True:
+    play_game()
+    play_again = input("Do you want to play again? (yes/no): ").lower()
+
+    if play_again not in ("yes", "y"):
+        print("Thanks for playing! 👋")
+        break
